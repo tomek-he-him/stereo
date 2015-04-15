@@ -1,6 +1,6 @@
-{ "name": "…"
+{ "name": "stereo"
 , "version": "0.0.0-work-in-progress"
-, "description": "…"
+, "description": "The multi-channel event emitter."
 
 , "dependencies":
   {}
@@ -11,12 +11,15 @@
   }
 
 , "devDependencies":
-  { "?": "Run `npm install babel tap-spec` and save it here"
+  { "babel": "5.1.10"
+  , "tap-spec": "3.0.0"
 
-  , "?": "Run `npm install del gulp gulp-babel` and save it here"
+  , "del": "1.1.1"
+  , "gulp": "3.8.11"
+  , "gulp-babel": "5.1.0"
+  , "gulp-help": "1.3.4"
   }
 
-, "main": "/dist.es5/index.js"
 , "files":
   [ "/*.js"
   , "/source/"
@@ -27,11 +30,19 @@
 
 , "license": "MIT"
 , "keywords":
-  [ "…"
+  [ "pubsub"
+  , "publish"
+  , "subscribe"
+  , "event"
+  , "emitter"
+  , "multiplex"
+  , "stream"
+  , "mux"
+  , "demux"
   ]
 , "author": "Tomek Wiszniewski <t.wiszniewski@gmail.com>"
 , "repository":
   { "type": "git"
-  , "url": "git@github.com:tomekwi/….git"
+  , "url": "git@github.com:tomekwi/stereo.git"
   }
 }
