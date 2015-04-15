@@ -31,7 +31,9 @@ gulp.task('scripts',
 );
 
 gulp.task('scripts:clean', false, function(done) {
-  del(scripts.target + '/*.{js,js.map}', done);
+  del([
+    scripts.target + '/index.{js,js.map}'
+  ], done);
 });
 
 // `gulp clean`
