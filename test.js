@@ -170,6 +170,57 @@ test('Works with multi-channel events.', (is) => {
   is.end();
 });
 
-test.skip('Handles errors alright.', (is) => {
+test('Throws when things go bad.', (is) => {
+  let emitter = stereo();
+
+  is.throws(
+    (() => stereo("argument")),
+    TypeError,
+    'when stereo() is passed an argument'
+  );
+
+  is.throws(
+    (() => emitter.on({any: "object"})),
+    TypeError,
+    'when .on() is passed a funny event'
+  );
+
+  is.throws(
+    (() => emitter.once({any: "object"})),
+    TypeError,
+    'when .once() is passed a funny event'
+  );
+
+  is.throws(
+    (() => emitter.off({any: "object"})),
+    TypeError,
+    'when .off() is passed a funny event'
+  );
+
+  is.throws(
+    (() => emitter.emit({any: "object"})),
+    TypeError,
+    'when .emit() is passed a funny event'
+  );
+
+  is.throws(
+    (() => emitter.on('valid event', /something strange/)),
+    TypeError,
+    'when .on() is passed a funny listener'
+  );
+
+  is.throws(
+    (() => emitter.once('valid event', ['bulls', 'hit'])),
+    TypeError,
+    'when .once() is passed a funny listener'
+  );
+
+  is.throws(
+    (() => emitter.off('valid event', 'invalid listener')),
+    TypeError,
+    'when .off() is passed a funny listener'
+  );
+
+
   is.end();
 });
