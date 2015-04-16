@@ -65,7 +65,7 @@ test('Works with single-channel events.', (is) => {
   emitter.emit('3 and 4');
 
   let five = (firstCall) => is.ok(firstCall,
-    'with `off` unregistering a specific listener'
+    '`off` unregisters a specific listener'
   );
   emitter.on('5 and 6', five);
   emitter.emit('5 and 6', true);
@@ -76,7 +76,7 @@ test('Works with single-channel events.', (is) => {
   emitter.emit('5 and 6', false);
 
   emitter.on('7 and 8', (firstCall) => is.ok(firstCall,
-    'with `off` unregistering all listeners on a channel'
+    '`off` unregisters all listeners on a channel'
   ));
   emitter.on('7 and 8', (firstCall) => is.ok(firstCall,
     '– no matter how many'
@@ -94,7 +94,7 @@ test('Works with single-channel events.', (is) => {
   emitter.emit('9', {passed: true});
 
   emitter.once('10', (firstCall) => is.ok(firstCall,
-    'firing listeners only once when they’re registered with `once`'
+    '`once` fires listeners only once'
   ));
   emitter.emit('10', true);
   emitter.emit('10', false);
