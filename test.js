@@ -2,7 +2,44 @@ import test from 'tape-catch';
 
 import stereo from './source/index';
 
-test.skip('Creates a new emitter.', (is) => {
+test('The API is in good shape.', (is) => {
+  is.equal(
+    typeof stereo,
+    'function',
+    '`stereo` is a function'
+  );
+
+  let emitter = stereo();
+
+  is.ok(
+    ['function', 'object'].contains(typeof stereo),
+    '– returning an emitter'
+  );
+
+  is.equal(
+    typeof emitter.on,
+    'function',
+    '– with the method `on`'
+  );
+
+  is.equal(
+    typeof emitter.off,
+    'function',
+    '– with the method `off`'
+  );
+
+  is.equal(
+    typeof emitter.once,
+    'function',
+    '– with the method `once`'
+  );
+
+  is.equal(
+    typeof emitter.emit,
+    'function',
+    '– with the method `emit`'
+  );
+
   is.end();
 });
 
