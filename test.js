@@ -103,7 +103,7 @@ test('Works with single-channel events.', (is) => {
 });
 
 test('Works with multi-channel events.', (is) => {
-  is.plan(7);
+  is.plan(11);
 
   let emitter = stereo();
 
@@ -129,19 +129,43 @@ test('Works with multi-channel events.', (is) => {
   ));
   emitter.emit(['4', '4.7']);
 
-  let counter5 = 0;
-  emitter.on('5', () => is.equal(++counter5, 1,
+  let five = 0;
+  emitter.on('5', () => is.equal(++five, 1,
     '– or the same event multiple times on one channel'
   ));
   emitter.emit(['5', '5']);
 
-  let counter6 = 0;
-  emitter.on(['6 and 7', '6.6 and 7.6'], () => is.ok(++counter6 <= 2,
+  let six = 0;
+  emitter.on(['6 and 7', '6 and 7.6'], () => is.ok(++six <= 2,
     'and multiple times when it receives multiple different events ' +
-    `(${counter6} of 2)`
+    `(${six} of 2)`
   ));
   emitter.emit('6 and 7');
-  emitter.emit('6.6 and 7.6');
+  emitter.emit('6 and 7.6');
+
+  let eightCounter = 0;
+  let eight = () => is.ok(++eightCounter <= 2,
+    (eightCounter === 1 ?
+      '`off` unregisters a specific listener from specific channels' :
+      '– really, only from specific channels'
+    )
+  );
+  emitter.on(['8-10', '8-10.1'], eight);
+  emitter.emit(['8-10', '8-10.1']);
+  emitter.on('8-10', () => is.pass(
+    '– really, only a specific listener'
+  ));
+  emitter.off('8-10', eight);
+  emitter.emit('8-10');
+  emitter.emit('8-10.1');
+
+  let eleven = 0;
+  emitter.once(['11', '11.234'], () => is.equal(++eleven, 1,
+    '`once` fires a listener only once, on any of the registered channels'
+  ));
+  emitter.emit('11');
+  emitter.emit('11.234');
+  emitter.emit('11');
 
   is.end();
 });
