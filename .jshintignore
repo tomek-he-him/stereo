@@ -2,9 +2,9 @@
 # =======================
 
 # - Built files
-/index.js
-/dist.es5/
-/dist.es6/
+/*.js
+!/gulpfile.js
+!/test.js
 
 # - Automatically installed dependencies
 /node_modules/
