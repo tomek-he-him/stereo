@@ -102,7 +102,47 @@ test('Works with single-channel events.', (is) => {
   is.end();
 });
 
-test.skip('Works with multi-channel events.', (is) => {
+test('Works with multi-channel events.', (is) => {
+  is.plan(7);
+
+  let emitter = stereo();
+
+  emitter.on(['1', '1.5'], () => is.pass(
+    '`on` listens on multiple channels'
+  ));
+  emitter.emit('1.5');
+
+  emitter.on('2', () => is.pass(
+    '`emit` emits an event on multiple channels'
+  ));
+  emitter.emit(['2', '2.33']);
+
+  emitter.on('3', (has, really) => is.ok(has.passed && really,
+    'all arguments are still passed on to the listener'
+  ));
+  emitter.emit(['3', '3.7'], {passed: true}, 'yup');
+
+  let counter4 = 0;
+  emitter.on(['4', '4.7'], () => is.equal(++counter4, 1,
+    'the listener is fired once when it receives the same event on multiple ' +
+    'channels'
+  ));
+  emitter.emit(['4', '4.7']);
+
+  let counter5 = 0;
+  emitter.on('5', () => is.equal(++counter5, 1,
+    '– or the same event multiple times on one channel'
+  ));
+  emitter.emit(['5', '5']);
+
+  let counter6 = 0;
+  emitter.on(['6 and 7', '6.6 and 7.6'], () => is.ok(++counter6 <= 2,
+    'and multiple times when it receives multiple different events ' +
+    `(${counter6} of 2)`
+  ));
+  emitter.emit('6 and 7');
+  emitter.emit('6.6 and 7.6');
+
   is.end();
 });
 
