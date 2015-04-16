@@ -4,7 +4,7 @@ import normalizeListener from './tools/normalizeListener';
 export default function stereo () {
   let listeners = {};
 
-  return {
+  let emitter = {
     on(events, listener) {
       // Normalize arguments.
       events = normalizeEvents(events);
@@ -20,7 +20,17 @@ export default function stereo () {
       }
     },
 
-    once() {},
+    once(events, listener) {
+      events = normalizeEvents(events);
+      listener = normalizeListener(listener);
+
+      function listenerWrapper (...args) {
+        emitter.off(events, listenerWrapper);
+        listener(...args);
+      }
+
+      emitter.on(events, listenerWrapper);
+    },
 
     off(events, listener) {
       // Normalize arguments.
@@ -56,4 +66,6 @@ export default function stereo () {
       }
     }
   };
+
+  return emitter;
 }
