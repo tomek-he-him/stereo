@@ -22,7 +22,26 @@ export default function stereo () {
 
     once() {},
 
-    off() {},
+    off(events, listener) {
+      // Normalize arguments.
+      events = normalizeEvents(events);
+
+      // If no listener is specified, unregister all listeners.
+      if (listener == null) for (let event of events) {
+        delete listeners[event];
+      }
+
+      // Otherwise unregister the given listener.
+      else {
+        listener = normalizeListener(listener);
+
+        for (let event of events) {
+          let register = listeners[event];
+          let index = register.indexOf(listener);
+          if (index !== -1) register.splice(index, 1);
+        }
+      }
+    },
 
     emit(events, ...args) {
       // Normalize arguments.
