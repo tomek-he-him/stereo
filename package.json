@@ -6,12 +6,13 @@
   {}
 
 , "scripts":
-  { "test": "babel-node test.js | tap-spec"
+  { "test": "jshint && babel-node test.js | tap-spec"
   , "prepublish": "gulp build"
   }
 
 , "devDependencies":
   { "babel": "5.1.10"
+  , "jshint": "2.7.0"
   , "tap-spec": "3.0.0"
 
   , "del": "1.1.1"
