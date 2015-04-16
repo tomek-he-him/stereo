@@ -12,7 +12,7 @@ test('The API is in good shape.', (is) => {
   let emitter = stereo();
 
   is.ok(
-    ['function', 'object'].contains(typeof stereo),
+    ['function', 'object'].includes(typeof emitter),
     '– returning an emitter'
   );
 
