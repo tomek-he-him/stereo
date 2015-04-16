@@ -13,10 +13,8 @@ export default function stereo () {
       // Register the listener.
       for (let event of events) {
         let register = listeners[event];
-        if (!register) listeners[event] = [listener];
-        else if (!register.includes(listener)) {
-          register.push(listener);
-        }
+        if (!register) listeners[event] = new Set([listener]);
+        else if (!register.has(listener)) register.add(listener);
       }
     },
 
@@ -44,11 +42,8 @@ export default function stereo () {
       // Otherwise unregister the given listener.
       else {
         listener = normalizeListener(listener);
-
         for (let event of events) {
-          let register = listeners[event];
-          let index = register.indexOf(listener);
-          if (index !== -1) register.splice(index, 1);
+          listeners[event].delete(listener);
         }
       }
     },
