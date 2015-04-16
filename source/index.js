@@ -11,7 +11,7 @@ export default function stereo () {
       listener = normalizeListener(listener);
 
       // Register the listener.
-      for(let event of events) {
+      for (let event of events) {
         let register = listeners[event];
         if (!register) listeners[event] = [listener];
         else if (!register.includes(listener)) {
@@ -29,7 +29,7 @@ export default function stereo () {
       events = normalizeEvents(events);
 
       // Dispatch listeners.
-      for(let event of events) {
+      for (let event of events) {
         let register = listeners[event];
         if (register) for (let listener of register) {
           listener(...args);
