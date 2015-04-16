@@ -24,6 +24,17 @@ export default function stereo () {
 
     off() {},
 
-    emit() {}
+    emit(events, ...args) {
+      // Normalize arguments.
+      events = normalizeEvents(events);
+
+      // Dispatch listeners.
+      for(let event of events) {
+        let register = listeners[event];
+        if (register) for (let listener of register) {
+          listener(...args);
+        }
+      }
+    }
   };
 }
