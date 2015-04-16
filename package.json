@@ -8,7 +8,7 @@
 , "scripts":
   { "develop": "nodangel --ignore node_modules --exec 'npm test'"
   , "prepublish": "gulp build"
-  , "test": "jshint . && babel-node test.js | tap-spec"
+  , "test": "babel-node test.js | tap-spec"
   }
 
 , "devDependencies":
