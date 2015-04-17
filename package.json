@@ -26,9 +26,9 @@
   }
 
 , "files":
-  [ "/*.js"
-  , "/source/"
-  , "/test/"
+  [ "!/node_modules/"
+  , "!/gulpfile.js"
+  , "/**/*.js"
   , "/Readme.md"
   , "/License.md"
   ]

@@ -2,8 +2,10 @@
 # ====================
 
 # - Built files,
-/dist.es5/
-/dist.es6/
+!/gulpfile.js
+!/test.js
+!/source/
+/**/*.js
 
 # - All files and directories starting with "#",
 \#*
