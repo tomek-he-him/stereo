@@ -21,6 +21,8 @@
   , "gulp": "3.8.11"
   , "gulp-babel": "5.1.0"
   , "gulp-help": "1.3.4"
+
+  , "tape-catch": "1.0.4"
   }
 
 , "files":
