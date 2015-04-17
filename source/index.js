@@ -2,6 +2,10 @@ import normalizeEvents from './tools/normalizeEvents';
 import normalizeListener from './tools/normalizeListener';
 
 export default function stereo () {
+  if (arguments.length) throw new TypeError(
+    'stereo: Expected no arguments.'
+  );
+
   let listeners = {};
 
   let emitter = {
