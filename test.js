@@ -35,6 +35,12 @@ test('The API is in good shape.', (is) => {
   );
 
   is.equal(
+    typeof emitter.when,
+    'function',
+    '– with the method `when`'
+  );
+
+  is.equal(
     typeof emitter.emit,
     'function',
     '– with the method `emit`'
@@ -44,7 +50,7 @@ test('The API is in good shape.', (is) => {
 });
 
 test('Works with single-channel events.', (is) => {
-  is.plan(11);
+  is.plan(13);
 
   let emitter = stereo();
 
@@ -99,11 +105,20 @@ test('Works with single-channel events.', (is) => {
   emitter.emit('11', true);
   emitter.emit('11', false);
 
+  emitter.emit('12 & 13', true);
+  emitter.when('12 & 13', (cachedCall) => is.pass(
+    (cachedCall ?
+      '`when` fires a cached event' :
+      '– and a normal event'
+    )
+  ));
+  emitter.emit('12 & 13', false);
+
   is.end();
 });
 
 test('Works with multi-channel events.', (is) => {
-  is.plan(11);
+  is.plan(13);
 
   let emitter = stereo();
 
@@ -167,6 +182,15 @@ test('Works with multi-channel events.', (is) => {
   emitter.emit('11.234');
   emitter.emit('11');
 
+  emitter.emit('12 & 13', true);
+  emitter.when(['12 & 13', '12 and thirteen'], (cachedCall) => is.pass(
+    (cachedCall ?
+      '`when` fires a cached event' :
+      '– and a normal event'
+    )
+  ));
+  emitter.emit('12 and thirteen', false);
+
   is.end();
 });
 
@@ -195,6 +219,12 @@ test('Throws when things go bad.', (is) => {
     (() => emitter.off({any: 'object'})),
     TypeError,
     'when .off() is passed a funny event'
+  );
+
+  is.throws(
+    (() => emitter.when({any: 'object'})),
+    TypeError,
+    'when .when() is passed a funny event'
   );
 
   is.throws(
