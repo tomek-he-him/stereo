@@ -7,6 +7,7 @@ export default (emitter) => {
   let cache = getCache(emitter);
 
   return function emit(events, ...args) {
+
     // Normalize arguments.
     events = normalizeEvents(events);
 
