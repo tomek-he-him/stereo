@@ -15,6 +15,9 @@ export default (emitter) => {
     let dispatchedListeners = new Set();
     for (let event of events) {
 
+      // - cache the event as latest
+      cache[event] = { latest: args };
+
       // - dispatch listeners
       let register = listeners[event];
       if (!register) continue;
@@ -23,9 +26,6 @@ export default (emitter) => {
         dispatchedListeners.add(listener);
         listener(...args);
       }
-
-      // - cache the event as latest
-      cache[event] = { latest: args };
     }
   };
 };
