@@ -174,31 +174,31 @@ test('Throws when things go bad.', (is) => {
   let emitter = stereo();
 
   is.throws(
-    (() => stereo("argument")),
+    (() => stereo('argument')),
     TypeError,
     'when stereo() is passed an argument'
   );
 
   is.throws(
-    (() => emitter.on({any: "object"})),
+    (() => emitter.on({any: 'object'})),
     TypeError,
     'when .on() is passed a funny event'
   );
 
   is.throws(
-    (() => emitter.once({any: "object"})),
+    (() => emitter.once({any: 'object'})),
     TypeError,
     'when .once() is passed a funny event'
   );
 
   is.throws(
-    (() => emitter.off({any: "object"})),
+    (() => emitter.off({any: 'object'})),
     TypeError,
     'when .off() is passed a funny event'
   );
 
   is.throws(
-    (() => emitter.emit({any: "object"})),
+    (() => emitter.emit({any: 'object'})),
     TypeError,
     'when .emit() is passed a funny event'
   );
