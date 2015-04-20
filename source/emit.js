@@ -1,7 +1,8 @@
 import normalizeEvents from './tools/normalizeEvents';
+import getListeners from './tools/getListeners';
 
 export default (emitter) => function emit(events, ...args) {
-  let { listeners } = emitter;
+  let listeners = getListeners(emitter);
 
   // Normalize arguments.
   events = normalizeEvents(events);
