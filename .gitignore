@@ -4,8 +4,8 @@
 # - Built files,
 !/gulpfile.js
 !/test.js
-!/source/
-/**/*.js
+/*.js
+/tools/*.js
 
 # - All files and directories starting with "#",
 \#*
