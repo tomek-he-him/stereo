@@ -19,7 +19,7 @@ stereo
 
 Create your own slim and powerful event emitter.
 
-*Note: I’m very tied up with work at the moment. I’m using this library in my own projects, but I still need a while to document it, set up coverage reports, and do the marketing :) [Ideas and questions are very welcome](http://github.com/tomekwi/stereo/issues).*
+*Note: I’m very tied up with work at the moment. I’m using this library in my own projects, but I still need a while to document it, do coverage reports, changelog and the marketing :) [Ideas and questions are very welcome](http://github.com/tomekwi/stereo/issues).*
 
 
 
@@ -37,6 +37,7 @@ $ npm install stereo
 Usage
 -----
 
+
 ### The “batteries included” way
 
 ```js
@@ -51,9 +52,10 @@ myLibrary.emit('channel one', 'All arguments are passed on.', /Really./);
 
 myLibrary.off('channel one');
 myLibrary.emit('channel one', 'No-one’s listening anymore.');
+
+// Boring? Don’t give up – read on!
 ```
 
-Boring? Don’t give up – read on!
 
 ### The “DIY” way
 
