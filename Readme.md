@@ -12,7 +12,7 @@
 stereo
 ======
 
-**The DIY event emitter kit.**  
+**The event emitter power kit.**  
 **Supports multiple channels**  
 **and promise-like caching.**
 
