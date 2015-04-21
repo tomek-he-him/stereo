@@ -1,24 +1,19 @@
-import normalizeEvents from './tools/normalizeEvents';
-import normalizeListener from './tools/normalizeListener';
-import _on from './on';
-import _off from './off';
-import _once from './once';
-import _emit from './emit';
-import _when from './when';
+import øon from './on';
+import øoff from './off';
+import øonce from './once';
+import øemit from './emit';
+import øwhen from './when';
 
 export default function stereo () {
   if (arguments.length) throw new TypeError(
     'stereo: Expected no arguments.'
   );
 
-  let listeners = {};
+  let emit = øemit();
+  let on = øon(emit);
+  let off = øoff(emit);
+  let once = øonce(emit);
+  let when = øwhen(emit);
 
-  let emitter = { listeners };
-  emitter.on = _on(emitter);
-  emitter.off = _off(emitter);
-  emitter.once = _once(emitter);
-  emitter.emit = _emit(emitter);
-  emitter.when = _when(emitter);
-
-  return emitter;
+  return { emit, on, off, once, when };
 }
