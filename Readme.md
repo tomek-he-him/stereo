@@ -12,8 +12,13 @@
 stereo
 ======
 
-**The event emitter kit.**  
-**Supports multiple channels and caching.**
+**The DIY event emitter kit.**  
+**Supports multiple channels**  
+**and promise-like caching.**
+
+[*“EventEmitter compared to RxJS is analogous to roller blades versus cars.”*](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom/) This is a super-lightweight “build your own car” kit.
+
+ 
 
 *stereo* is a super-lightweight alternative to RXjs. A collection of micro modules you can mix, match and extend.
 
