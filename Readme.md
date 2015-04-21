@@ -67,12 +67,12 @@ myLibrary.emit('channel one', 'No-one’s listening anymore.');
 ### The “DIY” way
 
 ```js
-import øemit from 'stereo/emit';
-import øwhen from 'stereo/when';
+import øEmit from 'stereo/emit';
+import øWhen from 'stereo/when';
 
 let myLibrary = 'anything';
-myLibrary.emit = øemit();
-myLibrary.when = øwhen(myLibrary.emit);
+myLibrary.emit = øEmit();
+myLibrary.when = øWhen(myLibrary.emit);
 
 // Let miracles happen!
 myLibrary.when(
