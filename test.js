@@ -50,7 +50,7 @@ test('The API is in good shape.', (is) => {
 });
 
 test('Works with single-channel events.', (is) => {
-  is.plan(13);
+  is.plan(11);
 
   let emitter = stereo();
 
@@ -105,20 +105,20 @@ test('Works with single-channel events.', (is) => {
   emitter.emit('11', true);
   emitter.emit('11', false);
 
-  emitter.emit('12 & 13', true);
-  emitter.when('12 & 13', (cachedCall) => is.pass(
-    (cachedCall ?
-      '`when` fires a cached event' :
-      '– and a normal event'
-    )
-  ));
-  emitter.emit('12 & 13', false);
+  // emitter.emit('12 & 13', true);
+  // emitter.when('12 & 13', (cachedCall) => is.pass(
+  //   (cachedCall ?
+  //     '`when` fires a cached event' :
+  //     '– and a normal event'
+  //   )
+  // ));
+  // emitter.emit('12 & 13', false);
 
   is.end();
 });
 
 test('Works with multi-channel events.', (is) => {
-  is.plan(13);
+  is.plan(11);
 
   let emitter = stereo();
 
@@ -182,14 +182,14 @@ test('Works with multi-channel events.', (is) => {
   emitter.emit('11.234');
   emitter.emit('11');
 
-  emitter.emit('12 & 13', true);
-  emitter.when(['12 & 13', '12 and thirteen'], (cachedCall) => is.pass(
-    (cachedCall ?
-      '`when` fires a cached event' :
-      '– and a normal event'
-    )
-  ));
-  emitter.emit('12 and thirteen', false);
+  // emitter.emit('12 & 13', true);
+  // emitter.when(['12 & 13', '12 and thirteen'], (cachedCall) => is.pass(
+  //   (cachedCall ?
+  //     '`when` fires a cached event' :
+  //     '– and a normal event'
+  //   )
+  // ));
+  // emitter.emit('12 and thirteen', false);
 
   is.end();
 });
