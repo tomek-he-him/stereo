@@ -1,5 +1,5 @@
 { "name": "stereo"
-, "version": "0.1.1"
+, "version": "0.2.0"
 , "description": "The multi-channel event emitter."
 
 , "dependencies":
