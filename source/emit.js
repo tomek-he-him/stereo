@@ -1,12 +1,10 @@
 import normalizeEvents from './tools/normalizeEvents';
-import getListeners from './tools/getListeners';
-import getCache from './tools/getCache';
 
-export default (emitter) => {
-  let listeners = getListeners(emitter);
-  let cache = getCache(emitter);
+export default () => {
+  let listeners = {};
+  let hooks = [];
 
-  return function emit(events, ...args) {
+  function emit(events, ...args) {
 
     // Normalize arguments.
     events = normalizeEvents(events);
@@ -15,17 +13,22 @@ export default (emitter) => {
     let dispatchedListeners = new Set();
     for (let event of events) {
 
-      // - cache the event as latest
-      cache[event] = { latest: args };
+      // - dispatch hooks
+      hooks.forEach((hook) => hook(event, args));
 
       // - dispatch listeners
-      let register = listeners[event];
-      if (!register) continue;
-      for (let listener of register) {
+      let eventListeners = listeners[event];
+      if (!eventListeners) continue;
+      for (let listener of eventListeners) {
         if (dispatchedListeners.has(listener)) continue;
         dispatchedListeners.add(listener);
         listener(...args);
       }
     }
-  };
+  }
+
+  // Export listeners an hooks.
+  emit.listeners = listeners;
+  emit.hooks = hooks;
+  return emit;
 };

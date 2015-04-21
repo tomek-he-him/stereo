@@ -1,12 +1,11 @@
 import normalizeEvents from './tools/normalizeEvents';
 import normalizeListener from './tools/normalizeListener';
-import getCache from './tools/getCache';
 
-export default (emitter) => {
-  let cache = getCache(emitter);
+export default (emit) => {
+  let { cache } = emit;
 
   return function when(events, listener) {
-    let { on } = emitter;
+    let { on } = emit;
     events = normalizeEvents(events);
     listener = normalizeListener(listener);
 
