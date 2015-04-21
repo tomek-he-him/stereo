@@ -1,9 +1,10 @@
 import normalizeEvents from './tools/normalizeEvents';
 import normalizeListener from './tools/normalizeListener';
-import getListeners from './tools/getListeners';
+import unhookListener from './tools/unhookListener';
 
-export default (emitter) => {
-  let listeners = getListeners(emitter);
+export default (emit) => {
+  let { listeners } = emit;
+  let unhook = unhookListener(listeners);
 
   return function off(events, listener) {
 
@@ -17,10 +18,7 @@ export default (emitter) => {
 
     // Otherwise unregister the given listener.
     else {
-      listener = normalizeListener(listener);
-      for (let event of events) {
-        listeners[event].delete(listener);
-      }
+      unhook(events, normalizeListener(listener));
     }
   };
 };

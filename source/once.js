@@ -1,16 +1,25 @@
 import normalizeEvents from './tools/normalizeEvents';
 import normalizeListener from './tools/normalizeListener';
+import unhookListener from './tools/unhookListener';
+import hookListener from './tools/hookListener';
 
-export default (emitter) => function once(events, listener) {
-  let { on, off } = emitter;
+export default (emit) => {
+  let { listeners } = emit;
+  let unhook = unhookListener(listeners);
+  let hook = hookListener(listeners);
 
-  events = normalizeEvents(events);
-  listener = normalizeListener(listener);
+  return function once(events, listener) {
+    events = normalizeEvents(events);
+    listener = normalizeListener(listener);
 
-  let listenerWrapper = (...args) => {
-    off(events, listenerWrapper);
-    listener(...args);
+    // Create an unhooker.
+    function unhooker() {
+      unhook(events, listener);
+      unhook(events, unhooker);
+    }
+
+    // Hook the listener and the unhooker to every event.
+    hook(events, listener);
+    hook(events, unhooker);
   };
-
-  on(events, listenerWrapper);
 };
