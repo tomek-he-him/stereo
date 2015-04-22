@@ -54,8 +54,8 @@ let myLibrary = 'anything';
 Object.assign(myLibrary, ø());
 
 myLibrary.on('channel one', console.log.bind(console));
-myLibrary.emit('channel one', 'All arguments are passed on.', /Really./);
-//» All arguments are passed on. /Really./
+myLibrary.emit('channel one', 'All arguments are passed on.', /Not kiddin'/);
+//» All arguments are passed on. /Not kiddin'/
 
 myLibrary.off('channel one');
 myLibrary.emit('channel one', 'No-one’s listening anymore.');
@@ -74,7 +74,11 @@ let myLibrary = 'anything';
 myLibrary.emit = øEmit();
 myLibrary.when = øWhen(myLibrary.emit);
 
-// Let miracles happen!
+// Miracles happen!
+
+myLibrary.emit('channel one', 'Yay, this has been cached!');
+
+// Time goes by...
 myLibrary.when(
   ['channel one', 'channel two'],
   console.log.bind(console)
