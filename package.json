@@ -1,6 +1,6 @@
 { "name": "stereo"
 , "version": "0.2.0"
-, "description": "The multi-channel event emitter."
+, "description": "The event emitter power kit."
 
 , "dependencies":
   {}
