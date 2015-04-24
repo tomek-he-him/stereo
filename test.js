@@ -46,11 +46,17 @@ test('The API is in good shape.', (is) => {
     '– with the method `emit`'
   );
 
+  is.equal(
+    typeof emitter.catch,
+    'function',
+    '– with the method `catch`'
+  );
+
   is.end();
 });
 
 test('Works with single-channel events.', (is) => {
-  is.plan(13);
+  is.plan(16);
 
   let emitter = stereo();
 
@@ -113,6 +119,21 @@ test('Works with single-channel events.', (is) => {
     )
   ));
   emitter.emit('12 & 13', false);
+
+  is.throws(
+    () => stereo().emit('error', 14),
+    'throws an error upon "error" when no catch listener is registered'
+  );
+
+  is.doesNotThrow(
+    () => {
+      emitter.catch(() => is.pass(
+        'fires the `catch` listener upon an "error" event'
+      ));
+      emitter.emit('error', '15 and 16');
+    },
+    'doesn’t throw when a listener is registered through `catch`'
+  );
 
   is.end();
 });
