@@ -2,16 +2,18 @@
 # ====================
 
 # - Built files,
-!/gulpfile.js
-!/test.js
 /*.js
 /tools/*.js
+!/module.js
+!/test.js
+/.es5/
 
 # - All files and directories starting with "#",
 \#*
 
 # - Automatically installed dependencies,
 /node_modules/
+/npm-debug.log
 
 # - Test coverage reports,
 /coverage/
