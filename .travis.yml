@@ -1,5 +1,15 @@
-language: node_js
+branches:
+  only:
+    - master
+
+before_install:
+  git config user.name "Travis CI"
+
+language:
+  node_js
 node_js:
-- '0.10'
-- '0.12'
-- 'iojs'
+  - "0.12"
+  - iojs
+
+after_script:
+  npm run coveralls
