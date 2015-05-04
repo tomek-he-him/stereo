@@ -1,6 +1,6 @@
 import test from 'tape-catch';
 
-import stereo from './source/index';
+import stereo from './module/index';
 
 test('The API is in good shape.', (is) => {
   is.equal(
