@@ -27,7 +27,7 @@ stereo
 
  
 
-*stereo* is a super-lightweight alternative to RXjs. A collection of micro modules you can mix, match and extend.
+*stereo* is a super-lightweight alternative to RxJS. A collection of micro modules you can mix, match and extend.
 
 Create your own slim and powerful event emitter.
 
