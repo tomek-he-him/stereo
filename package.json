@@ -12,7 +12,7 @@
   , "coverage": "isparta cover test.js"
   , "develop": "nodangel --ignore node_modules --exec 'npm run --silent test:lite'"
   , "prepublish": "npm run clean && npm run build"
-  , "test": "jshint . && babel *.js module/*.js --out-dir .es5 && node .es5/test.js | tap-spec"
+  , "test": "babel *.js module/*.js --out-dir .es5 && node .es5/test.js | tap-spec"
   , "test:lite": "babel-node test.js | tap-spec"
   }
 
@@ -20,7 +20,6 @@
   { "babel": "5.1.10"
   , "coveralls": "2.11.2"
   , "isparta": "3.0.3"
-  , "jshint": "2.7.0"
   , "nodangel": "1.3.8"
   , "tap-spec": "2.2.2"
 
