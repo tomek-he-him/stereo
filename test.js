@@ -1,3 +1,5 @@
+import 'es6-set/implement';
+
 import test from 'tape-catch';
 
 import stereo from './module/index';
