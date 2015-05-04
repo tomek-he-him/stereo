@@ -1,5 +1,5 @@
 { "name": "stereo"
-, "version": "0.3.0"
+, "version": "0.4.0"
 , "description": "The event emitter power kit."
 
 , "dependencies":
