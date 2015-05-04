@@ -1,5 +1,5 @@
 export default (listeners) => (events, listener) => {
-  for (let event of events) {
+  events.forEach((event) => {
     listeners[event].delete(listener);
-  }
+  });
 };

@@ -11,20 +11,20 @@ export default () => {
 
     // For every event,
     let dispatchedListeners = new Set();
-    for (let event of events) {
+    events.forEach((event) => {
 
       // - dispatch hooks
       hooks.forEach((hook) => hook(event, args));
 
       // - dispatch listeners
       let eventListeners = listeners[event];
-      if (!eventListeners) continue;
-      for (let listener of eventListeners) {
-        if (dispatchedListeners.has(listener)) continue;
+      if (!eventListeners) return;
+      eventListeners.forEach((listener) => {
+        if (dispatchedListeners.has(listener)) return;
         dispatchedListeners.add(listener);
         listener(...args);
-      }
-    }
+      });
+    });
   }
 
   // Export listeners an hooks.

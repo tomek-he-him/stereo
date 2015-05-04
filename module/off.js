@@ -12,9 +12,9 @@ export default (emit) => {
     events = normalizeEvents(events);
 
     // If no listener is specified, unregister all listeners.
-    if (listener == null) for (let event of events) {
+    if (listener == null) events.forEach((event) => {
       delete listeners[event];
-    }
+    });
 
     // Otherwise unregister the given listener.
     else {

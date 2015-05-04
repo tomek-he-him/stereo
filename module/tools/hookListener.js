@@ -1,7 +1,7 @@
 export default (listeners) => (events, listener) => {
-  for (let event of events) {
+  events.forEach((event) => {
     let eventListeners = listeners[event];
     if (!eventListeners) listeners[event] = new Set([listener]);
     else if (!eventListeners.has(listener)) eventListeners.add(listener);
-  }
+  });
 };

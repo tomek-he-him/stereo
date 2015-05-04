@@ -17,10 +17,12 @@ export default (emit) => {
 
     // If any of the `events` is in the cache, trigger the listener.
     let args;
-    for (let event of events) if ((args = cache[event])) {
-      listener(...args);
-      break;
-    }
+    events.some((event) => {
+      if ((args = cache[event])) {
+        listener(...args);
+        return true;
+      }
+    });
 
     // Hook the listener to the `events`.
     hook(events, listener);
