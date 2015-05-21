@@ -13,5 +13,6 @@ export default (emit) => {
       normalizeEvents(events),
       normalizeListener(listener)
     );
+    return this;
   };
 };

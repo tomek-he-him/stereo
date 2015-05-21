@@ -20,5 +20,6 @@ export default (emit) => {
     else {
       unhook(events, normalizeListener(listener));
     }
+    return this;
   };
 };

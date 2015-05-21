@@ -21,5 +21,6 @@ export default (emit) => {
     // Hook the listener and the unhooker to every event.
     hook(events, listener);
     hook(events, unhooker);
+    return this;
   };
 };

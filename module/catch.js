@@ -15,5 +15,6 @@ export default (emit) => {
   return function(listener) {
     // Register the listener at the event "error".
     hook(['error'], normalizeListener(listener));
+    return this;
   };
 };
