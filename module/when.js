@@ -26,5 +26,6 @@ export default (emit) => {
 
     // Hook the listener to the `events`.
     hook(events, listener);
+    return this;
   };
 };

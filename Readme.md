@@ -58,12 +58,12 @@ import ø from 'stereo';
 let myLibrary = 'anything';
 Object.assign(myLibrary, ø());
 
-myLibrary.on('channel one', console.log.bind(console));
-myLibrary.emit('channel one', 'All arguments are passed on.', /Not kiddin'/);
+myLibrary.on('channel one', console.log.bind(console))
+  .emit('channel one', 'All arguments are passed on.', /Not kiddin'/);
 //» All arguments are passed on. /Not kiddin'/
 
-myLibrary.off('channel one');
-myLibrary.emit('channel one', 'No-one’s listening anymore.');
+myLibrary.off('channel one')
+  .emit('channel one', 'No-one’s listening anymore.');
 
 // Boring? Don’t give up – read on!
 ```

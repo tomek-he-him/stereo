@@ -25,6 +25,7 @@ export default () => {
         listener(...args);
       });
     });
+    return this;
   }
 
   // Export listeners an hooks.

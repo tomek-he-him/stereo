@@ -64,63 +64,63 @@ test('Works with single-channel events.', (is) => {
 
   emitter.on('1', () => is.pass(
     'in the simplest case'
-  ));
-  emitter.emit('1');
+  ))
+  .emit('1');
 
   emitter.on('2', (has, really) => is.ok(has.passed && really,
     'when a listener has arguments'
-  ));
-  emitter.emit('2', {passed: true}, 'yup');
+  ))
+  .emit('2', {passed: true}, 'yup');
 
   emitter.on('3 and 4', () => is.pass(
     'when an event occurs more than once'
-  ));
-  emitter.emit('3 and 4');
-  emitter.emit('3 and 4');
+  ))
+  .emit('3 and 4')
+  .emit('3 and 4');
 
   let five = (firstCall) => is.ok(firstCall,
     '`off` unregisters a specific listener'
   );
-  emitter.on('5 and 6', five);
-  emitter.emit('5 and 6', true);
-  emitter.on('5 and 6', () => is.pass(
+  emitter.on('5 and 6', five)
+  .emit('5 and 6', true)
+  .on('5 and 6', () => is.pass(
     '– really, only a specific one'
-  ));
-  emitter.off('5 and 6', five);
-  emitter.emit('5 and 6', false);
+  ))
+  .off('5 and 6', five)
+  .emit('5 and 6', false);
 
   emitter.on('7 and 8', (firstCall) => is.ok(firstCall,
     '`off` unregisters all listeners on a channel'
-  ));
-  emitter.on('7 and 8', (firstCall) => is.ok(firstCall,
+  ))
+  .on('7 and 8', (firstCall) => is.ok(firstCall,
     '– no matter how many'
-  ));
-  emitter.emit('7 and 8', true);
-  emitter.off('7 and 8');
-  emitter.emit('7 and 8', false);
+  ))
+  .emit('7 and 8', true)
+  .off('7 and 8')
+  .emit('7 and 8', false);
 
   emitter.on('9 and 10', (has) => is.ok(has.passed,
     'passes arguments to all listeners'
-  ));
-  emitter.on('9 and 10', (has) => is.ok(has.passed,
+  ))
+  .on('9 and 10', (has) => is.ok(has.passed,
     '– even if there are more of them'
-  ));
-  emitter.emit('9 and 10', {passed: true});
+  ))
+  .emit('9 and 10', {passed: true});
 
   emitter.once('11', (firstCall) => is.ok(firstCall,
     '`once` fires listeners only once'
-  ));
-  emitter.emit('11', true);
-  emitter.emit('11', false);
+  ))
+  .emit('11', true)
+  .emit('11', false);
 
-  emitter.emit('12 & 13', true);
-  emitter.when('12 & 13', (cachedCall) => is.pass(
+  emitter.emit('12 & 13', true)
+  .when('12 & 13', (cachedCall) => is.pass(
     (cachedCall ?
       '`when` fires a cached event' :
       '– and a normal event'
     )
-  ));
-  emitter.emit('12 & 13', false);
+  ))
+  .emit('12 & 13', false);
 
   is.throws(
     () => stereo().emit('error', 14),
@@ -131,8 +131,8 @@ test('Works with single-channel events.', (is) => {
     () => {
       emitter.catch(() => is.pass(
         'fires the `catch` listener upon an "error" event'
-      ));
-      emitter.emit('error', '15 and 16');
+      ))
+      .emit('error', '15 and 16');
     },
     'doesn’t throw when a listener is registered through `catch`'
   );
@@ -147,39 +147,39 @@ test('Works with multi-channel events.', (is) => {
 
   emitter.on(['1', '1.5'], () => is.pass(
     '`on` listens on multiple channels'
-  ));
-  emitter.emit('1.5');
+  ))
+  .emit('1.5');
 
   emitter.on('2', () => is.pass(
     '`emit` emits an event on multiple channels'
-  ));
-  emitter.emit(['2', '2.33']);
+  ))
+  .emit(['2', '2.33']);
 
   emitter.on('3', (has, really) => is.ok(has.passed && really,
     'all arguments are still passed on to the listener'
-  ));
-  emitter.emit(['3', '3.7'], {passed: true}, 'yup');
+  ))
+  .emit(['3', '3.7'], {passed: true}, 'yup');
 
   let counter4 = 0;
   emitter.on(['4', '4.7'], () => is.equal(++counter4, 1,
     'the listener is fired once when it receives the same event on multiple ' +
     'channels'
-  ));
-  emitter.emit(['4', '4.7']);
+  ))
+  .emit(['4', '4.7']);
 
   let five = 0;
   emitter.on('5', () => is.equal(++five, 1,
     '– or the same event multiple times on one channel'
-  ));
-  emitter.emit(['5', '5']);
+  ))
+  .emit(['5', '5']);
 
   let six = 0;
   emitter.on(['6 and 7', '6 and 7.6'], () => is.ok(++six <= 2,
     'and multiple times when it receives multiple different events ' +
     `(${six} of 2)`
-  ));
-  emitter.emit('6 and 7');
-  emitter.emit('6 and 7.6');
+  ))
+  .emit('6 and 7')
+  .emit('6 and 7.6');
 
   let eightCounter = 0;
   let eight = () => is.ok(++eightCounter <= 2,
@@ -188,31 +188,31 @@ test('Works with multi-channel events.', (is) => {
       '– really, only from specific channels'
     )
   );
-  emitter.on(['8-10', '8-10.1'], eight);
-  emitter.emit(['8-10', '8-10.1']);
-  emitter.on('8-10', () => is.pass(
+  emitter.on(['8-10', '8-10.1'], eight)
+  .emit(['8-10', '8-10.1'])
+  .on('8-10', () => is.pass(
     '– really, only a specific listener'
-  ));
-  emitter.off('8-10', eight);
-  emitter.emit('8-10');
-  emitter.emit('8-10.1');
+  ))
+  .off('8-10', eight)
+  .emit('8-10')
+  .emit('8-10.1');
 
   let eleven = 0;
   emitter.once(['11', '11.234'], () => is.equal(++eleven, 1,
     '`once` fires a listener only once, on any of the registered channels'
-  ));
-  emitter.emit('11');
-  emitter.emit('11.234');
-  emitter.emit('11');
+  ))
+  .emit('11')
+  .emit('11.234')
+  .emit('11');
 
-  emitter.emit('12 & 13', true);
-  emitter.when(['12 & 13', '12 and thirteen'], (cachedCall) => is.pass(
+  emitter.emit('12 & 13', true)
+  .when(['12 & 13', '12 and thirteen'], (cachedCall) => is.pass(
     (cachedCall ?
       '`when` fires a cached event' :
       '– and a normal event'
     )
-  ));
-  emitter.emit('12 and thirteen', false);
+  ))
+  .emit('12 and thirteen', false);
 
   is.end();
 });
