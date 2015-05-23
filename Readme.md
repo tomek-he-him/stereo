@@ -21,7 +21,7 @@ stereo
 **Supports multiple channels**  
 **and promise-like caching.**
 
-[*“EventEmitter compared to RxJS is analogous to roller blades versus cars.”*](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom/) This is a super-lightweight “build your own car” kit.
+[*“EventEmitter compared to RxJS is analogous to roller blades versus cars.”*](http://futurice.com/blog/reactive-mvc-and-the-virtual-dom/) This is a super-lightweight “build your own vehicle” kit.
 
  
 
