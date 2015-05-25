@@ -58,7 +58,7 @@ test('The API is in good shape.', (is) => {
 });
 
 test('Works with single-channel events.', (is) => {
-  is.plan(16);
+  is.plan(18);
 
   let emitter = stereo();
 
@@ -122,8 +122,21 @@ test('Works with single-channel events.', (is) => {
   ))
   .emit('12 & 13', false);
 
+  emitter.emit('14', true)
+  .whence('14', (firstCall) => is.ok(firstCall,
+    '`whence` fires a cached event only once'
+  ))
+  .emit('14', false);
+
+  emitter
+  .whence('15', (firstCall) => is.ok(firstCall,
+    '`whence` fires a normal event only once'
+  ))
+  .emit('15', true)
+  .emit('15', false);
+
   is.throws(
-    () => stereo().emit('error', 14),
+    () => stereo().emit('error', 16),
     'throws an error upon "error" when no catch listener is registered'
   );
 
@@ -132,10 +145,11 @@ test('Works with single-channel events.', (is) => {
       emitter.catch(() => is.pass(
         'fires the `catch` listener upon an "error" event'
       ))
-      .emit('error', '15 and 16');
+      .emit('error', '17 and 18');
     },
     'doesn’t throw when a listener is registered through `catch`'
   );
+
 
   is.end();
 });
