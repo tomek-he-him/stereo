@@ -1,5 +1,34 @@
 import normalizeEvents from './tools/normalizeEvents';
 
+ /**
+  * @typedef  Publisher
+  * @type     {Function}
+  *
+  * @param  {(String|String[])}  events
+  *   An event or array of events.
+  * @param  {...*}               args
+  *   Arguments pushed to listeners.
+  */
+
+ /**
+  * @typedef  Listener
+  * @type     {Function}
+  *
+  * @param  {...*}  args
+  *   Arguments received from a publisher.
+  */
+
+ /**
+  * Creates a publisher
+  *
+  * This function is the heart of the library. Calling it with no arguments
+  * creates a [publisher](#/publisher). Pass that publisher to [on](#/on),
+  * [when](#/when) or any other function to register listeners on it.
+  *
+  * @module  {Function}  stereo/emit
+  *
+  * @returns  {Publisher}
+  */
 export default () => {
   let listeners = {};
   let hooks = [];
